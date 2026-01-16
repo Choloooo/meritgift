@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merit Gifts | Luxury Gift Hampers</title>
+
+<style>
+/* ===== GENERAL ===== */
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #ffffff;
+    color: #000;
+    line-height: 1.6;
+}
+
+/* ===== HEADER ===== */
+header {
+    padding: 25px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.logo img {
+    height: 45px;
+}
+
+.nav-links a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.nav-links a:hover {
+    border-bottom: 1px solid black;
+}
+
+/* ===== MOBILE MENU ===== */
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.offcanvas {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    height: 100%;
+    background: white;
+    padding: 60px 30px;
+    transition: 0.4s ease;
+    z-index: 999;
+}
+
+.offcanvas a {
+    display: block;
+    margin-bottom: 25px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: black;
+}
+
+/* ===== HERO SLIDESHOW ===== */
+.hero {
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10; /* above slides */
+    text-align: center;
+    color: white;
+    background: rgba(0,0,0,0.35);
+    padding: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nice-things {
+    font-size: 22px;
+    font-weight: 400;
+    color: #ffd700; /* golden */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+#niceText {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+#niceText.show {
+    opacity: 1;
+}
+
+.hero h2 {
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.hero p {
+    margin-top: 15px;
+    font-size: 18px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+}
+
+.hero button {
+    margin-top: 30px;
+    padding: 12px 35px;
+    background: black;
+    color: white;
+    border: none;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.hero button:hover {
+    background: #333;
+}
+
+/* ===== SECTION ===== */
+.section {
+    padding: 80px 60px;
+    text-align: center;
+}
+
+.section h3 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.product {
+    border: 1px solid #eee;
+    padding: 30px;
+}
+
+.product h4 {
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.product p {
+    font-size: 14px;
+    color: #444;
+    margin: 15px 0;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    padding: 30px;
+    text-align: center;
+    background: black;
+    color: white;
+    font-size: 13px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    header {
+        padding: 20px 25px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero h2 {
+        font-size: 32px;
+    }
+
+    .hero-content {
+        padding: 40px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <img src="merit.png" alt="Merit Gifts">
+    </div>
+
+    <nav class="nav-links">
+        <a href="#">HOME</a>
+        <a href="#">SHOP</a>
+        <a href="#">CUSTOM GIFTS</a>
+        <a href="#">CONTACT</a>
+    </nav>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+</header>
+
+<!-- OFFCANVAS MENU -->
+<div class="offcanvas" id="mobileMenu">
+    <a href="#" onclick="toggleMenu()">✕</a>
+    <a href="#">HOME</a>
+    <a href="#">SHOP</a>
+    <a href="#">CUSTOM GIFTS</a>
+    <a href="#">CONTACT</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="slideshow" id="slideshow">
+        <img src="hamper1.png" class="slide active" alt="Luxury Hamper 1">
+        <img src="hamper2.jpg" class="slide" alt="Luxury Hamper 2">
+        <img src="hamper3.jpg" class="slide" alt="Luxury Hamper 3">
+        <img src="hamper4.jpg" class="slide" alt="Luxury Hamper 4">
+        <img src="hamper5.jpg" class="slide" alt="Luxury Hamper 5">
+        <img src="hamper6.jpg" class="slide" alt="Luxury Hamper 6">
+    </div>
+
+    <div class="hero-content">
+        <div class="nice-things">
+            <span id="niceText">Surprise someone today!</span>
+        </div>
+        <h2>Luxury Gifts That Speak From The Heart</h2>
+        <p>Our bespoke gift hampers are crafted with care to celebrate your special moments. Each box is thoughtfully curated to delight and impress — perfect for weddings, birthdays, anniversaries, and corporate gifts in Nigeria.</p>
+        <button>Explore Collection</button>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section">
+    <h3>Our Collection</h3>
+
+    <div class="products">
+        <div class="product">
+            <h4>Valentine Hamper</h4>
+            <p>Chocolates, roses & handwritten note for your loved one</p>
+            <strong>₦28,000</strong>
+        </div>
+
+        <div class="product">
+            <h4>Luxury Box</h4>
+            <p>Premium curated gifts for timeless elegance</p>
+            <strong>₦45,000</strong>
+        </div>
+
+        <div class="product">
+            <h4>Custom Gift</h4>
+            <p>Create a personalized hamper that reflects your style</p>
+            <strong>From ₦20,000</strong>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Merit Gifts — Elegance in Every Detail</p>
+</footer>
+
+<script>
+/* ===== MOBILE MENU ===== */
+function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    const isOpen = window.getComputedStyle(menu).right === "0px";
+    menu.style.right = isOpen ? "-100%" : "0px";
+}
+
+/* ===== HERO SLIDESHOW ===== */
+const slides = document.querySelectorAll(".slide");
+let currentIndex = 0;
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) slide.classList.add("active");
+    });
+}
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+}
+
+setInterval(nextSlide, 4000);
+
+/* ===== NICE THINGS ROTATING TEXT ===== */
+const nicePhrases = [
+    "Surprise someone today!",
+    "Spread a little joy!",
+    "Luxury gifts for every occasion",
+    "Make their day unforgettable",
+    "Thoughtful. Elegant. Memorable."
+];
+
+let phraseIndex = 0;
+const niceText = document.getElementById("niceText");
+
+function showNiceText() {
+    niceText.classList.remove("show");
+    setTimeout(() => {
+        phraseIndex = (phraseIndex + 1) % nicePhrases.length;
+        niceText.textContent = nicePhrases[phraseIndex];
+        niceText.classList.add("show");
+    }, 500);
+}
+
+niceText.classList.add("show"); // show first phrase
+setInterval(showNiceText, 3000);
+</script>
+
+</body>
+</html>
